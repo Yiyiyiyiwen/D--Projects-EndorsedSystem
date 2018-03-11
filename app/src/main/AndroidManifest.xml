@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.even1.endorsedsystemstudent">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.example.even1.endorsedsystemstudent.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.even1.endorsedsystemstudent.mainfragment.BookShelf" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.mainfragment.Stacks" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.mainfragment.MyClass" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.mainfragment.Search" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.mainfragment.MyHome" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.StackFragment.ReadingIN" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.StackFragment.ReadingOUT" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.StackFragment.RankingList" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.StackFragment.Book_List" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.StackFragment.Book_Detail" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.StackFragment.Rank_Detail" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.StackFragment.Good_Books" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.StackFragment.Good_Readers" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.MyClass.MyClass_detail" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.MyClass.Class_Member" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.MyClass.Class_Homework" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.MyClass.Class_Grade" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.MyClass.Class_Rank" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.MyHome.mMessage" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.MyHome.mInfor" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.MyHome.mSet" />
+        <activity android:name="com.example.even1.endorsedsystemstudent.MyHome.mVIP" />
+        <activity
+            android:name=".mainfragment.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".MyHome.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+    </application>
+
+</manifest>
