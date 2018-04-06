@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     tools:context="com.example.even1.endorsedsystemstudent.StackFragment.ReadingIN">
 
     <com.example.even1.endorsedsystemstudent.View.MyListview
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mylist"></com.example.even1.endorsedsystemstudent.View.MyListview>
+
 </LinearLayout>

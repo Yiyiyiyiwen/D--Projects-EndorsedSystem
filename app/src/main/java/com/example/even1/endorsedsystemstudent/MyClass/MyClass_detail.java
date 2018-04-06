@@ -3,6 +3,7 @@ package com.example.even1.endorsedsystemstudent.MyClass;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,12 +14,25 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.even1.endorsedsystemstudent.Adapter.GridViewAdapter;
 import com.example.even1.endorsedsystemstudent.R;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MyClass_detail extends AppCompatActivity implements View.OnClickListener,AdapterView.OnItemClickListener{
 
@@ -35,6 +49,9 @@ public class MyClass_detail extends AppCompatActivity implements View.OnClickLis
     private Dialog dialog;
 
     private LinearLayout linearLayout1,linearLayout2,linearLayout3,linearLayout4;
+    private TextView mclassname,mowner;
+
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +65,8 @@ public class MyClass_detail extends AppCompatActivity implements View.OnClickLis
         linearLayout2 = (LinearLayout)findViewById(R.id.classhomework);
         linearLayout3 = (LinearLayout)findViewById(R.id.classgrade);
         linearLayout4 = (LinearLayout)findViewById(R.id.classrank);
+        mclassname = (TextView)findViewById(R.id.classname);
+        mowner = (TextView)findViewById(R.id.owner);
 
         init();
     }
@@ -87,34 +106,40 @@ public class MyClass_detail extends AppCompatActivity implements View.OnClickLis
         linearLayout2.setOnClickListener(this);
         linearLayout3.setOnClickListener(this);
         linearLayout4.setOnClickListener(this);
+
+        Bundle bundle = getIntent().getExtras();
+        id = bundle.getInt("id");
+        mclassname.setText(bundle.getString("classname"));
+        mowner.setText(bundle.getString("owner"));
     }
 
-    /*private ArrayList<HashMap<String, Object>> getMenuAdapter(//将数据装入List
-                                                              int[] menuImageArray, String[] menuNameArray) {
-        ArrayList<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
-        for (int i = 0; i < menuImageArray.length; i++) {
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("image", menuImageArray[i]);
-            map.put("name", menuNameArray[i]);
-            data.add(map);
-        }
-        return data;
-    }*/
 
     @Override
     public void onClick(View v) {
+        Bundle bundle = new Bundle();
         switch (v.getId()){
             case R.id.erweima:
                 dialog.show();
                 break;
             case R.id.classmember:
-                startActivity(new Intent(this, Class_Member.class));
+                Intent intentmember = new Intent(this, Class_Member.class);
+                bundle.putInt("id",id);
+                intentmember.putExtras(bundle);
+                startActivity(intentmember);
                 break;
             case R.id.classhomework:
-                startActivity(new Intent(this, Class_Homework.class));
+                Intent intentwork = new Intent(this, Class_Homework.class);
+                bundle.putInt("id",id);
+                bundle.putInt("choose",1);
+                intentwork.putExtras(bundle);
+                startActivity(intentwork);
                 break;
             case R.id.classgrade:
-                startActivity(new Intent(this, Class_Grade.class));
+                Intent intentgrade = new Intent(this, Class_Homework.class);
+                bundle.putInt("choose",2);
+                bundle.putInt("id",id);
+                intentgrade.putExtras(bundle);
+                startActivity(intentgrade);
                 break;
             case R.id.classrank:
                 startActivity(new Intent(this, Class_Rank.class));

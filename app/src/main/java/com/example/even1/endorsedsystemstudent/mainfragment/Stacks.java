@@ -29,7 +29,7 @@ public class Stacks extends Fragment {
     private RollPagerViewAdapter adapter;
     private TabLayout tabLayout;
     private NoScrollViewPager viewPager;
-    private int[] imgs = {R.mipmap.adver1,R.mipmap.adver1,R.mipmap.adver1};
+    private int[] imgs = {R.mipmap.adver2,R.mipmap.adver2,R.mipmap.adver2};
 
     private List<Fragment> list;
     private MyViewPagerAdapter adapter2;
@@ -57,7 +57,7 @@ public class Stacks extends Fragment {
 
         list = new ArrayList<>();
         list.add(new ReadingIN());
-        list.add(new ReadingOUT());
+        list.add(new ReadingIN());
         list.add(new RankingList());
 
         adapter2 = new MyViewPagerAdapter(getChildFragmentManager(),list,titles);

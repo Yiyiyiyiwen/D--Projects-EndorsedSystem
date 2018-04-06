@@ -1,17 +1,28 @@
 package com.example.even1.endorsedsystemstudent.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.bumptech.glide.Glide;
 import com.example.even1.endorsedsystemstudent.R;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by Even1 on 2018/2/5.
@@ -25,11 +36,19 @@ public class GridViewAdapter extends BaseAdapter {
     private View deleteView;
     private int number;
     private boolean isShowDelete;// 根据这个变量来判断是否显示删除图标，true是显示，false是不显示
+    private Bitmap bitmap;
+    private ArrayList<String> bookpic;
 
     public GridViewAdapter(Context mcontext,ArrayList<HashMap<String,Object>> myList,int number){
         this.mContext = mcontext;
         this.myList = myList;
         this.number = number;
+    }
+    public GridViewAdapter(Context mcontext,ArrayList<HashMap<String,Object>> myList,int number,ArrayList<String> bookpic){
+        this.mContext = mcontext;
+        this.myList = myList;
+        this.number = number;
+        this.bookpic = bookpic;
     }
     public void setIsShowDelete(boolean isShowDelete) {
         this.isShowDelete = isShowDelete;
@@ -67,7 +86,12 @@ public class GridViewAdapter extends BaseAdapter {
         img = (ImageView) convertView.findViewById(R.id.pic);
         name_tv = (TextView) convertView.findViewById(R.id.name);
 
-        img.setImageResource(myList.get(position).get("image").hashCode());
+        String url = myList.get(position).get("image").toString();
+        System.out.println("position------------"+position+"adapterurl-------------"+url);
+        Glide
+                .with(mContext)
+                .load(myList.get(position).get("image"))
+                .into(img);
         name_tv.setText(myList.get(position).get("name").toString());
         return convertView;
     }

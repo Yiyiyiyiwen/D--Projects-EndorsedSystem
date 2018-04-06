@@ -10,7 +10,7 @@
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/toolbar"
         android:background="@color/colorPrimary"
         android:titleTextColor="@color/white">
@@ -26,7 +26,7 @@
     </android.support.v7.widget.Toolbar>
 <com.jude.rollviewpager.RollPagerView
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="160dp"
     android:id="@+id/rollpagerview"
     app:rollviewpager_play_delay="3000"
     ></com.jude.rollviewpager.RollPagerView>

@@ -1,38 +1,45 @@
 package com.example.even1.endorsedsystemstudent.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.even1.endorsedsystemstudent.Data.Books;
 import com.example.even1.endorsedsystemstudent.R;
+import com.example.even1.endorsedsystemstudent.StackFragment.Book_Detail;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class HorizonListviewAdapter extends BaseAdapter {
-
+	private Context context;
 	private LayoutInflater inflater = null;
-	private List<Books> goods = new ArrayList<Books>();
+	private ArrayList<HashMap<String, Object>> mylist = new ArrayList<>();
 
-	public HorizonListviewAdapter(Context context, List<Books> goods) {
+	public HorizonListviewAdapter(Context context, ArrayList<HashMap<String, Object>> mylist) {
+		this.context = context;
 		this.inflater = LayoutInflater.from(context);
-		this.goods = goods;
+		this.mylist = mylist;
 	}
 
 	@Override
 	public int getCount() {
-		return goods.size();
+		return mylist.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return goods.get(position);
+		return mylist.get(position);
 	}
 
 	@Override
@@ -46,52 +53,42 @@ public class HorizonListviewAdapter extends BaseAdapter {
 		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = inflater.inflate(R.layout.item_infor, null);
-			holder.date = (TextView) convertView.findViewById(R.id.name);
+			holder.name = (TextView) convertView.findViewById(R.id.name);
 			holder.image = (ImageView) convertView.findViewById(R.id.pic);
 			holder.item = (LinearLayout) convertView.findViewById(R.id.ll_item);
 			convertView.setTag(holder);
+
 		}else {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		
-		holder.date.setText(goods.get(position).getDate());
-	    holder.image.setImageResource(goods.get(position).getImageId());
-//	    holder.item.setOnTouchListener(new OnTouchListener() {
-//			
-//			@Override
-//			public boolean onTouch(View v, MotionEvent ev) {
-//				// TODO Auto-generated method stub
-//				    int lastX = 0,lastY = 0;
-//				    int dx = 0,dy = 0;
-//			        int action = ev.getAction();
-//			        switch (action) {
-//			        case MotionEvent.ACTION_DOWN:
-//	                    lastX=(int) ev.getRawX();
-//	                    lastY=(int) ev.getRawY();
-//	                    break;
-//			        case MotionEvent.ACTION_MOVE:
-//			        	dx =(int)ev.getRawX() - lastX;   
-//	                     dy =(int)ev.getRawY() - lastY; 
-//			        	break;
-//			        case MotionEvent.ACTION_UP:
-//			        	if (dy<200|| dy > -200) {
-//							return true;
-//						}
-//			        	break;
-//					default:
-//						break;
-//					}
-//			    return false;
-//			}
-//			
-//		});
+		holder.name.setText((CharSequence) mylist.get(position).get("name"));
+	    //holder.image.setImageResource(goods.get(position).getImageId());
+		Glide
+				.with(context)
+				.load(mylist.get(position).get("pic"))
+				.into(holder.image);
+	    /*holder.item.setOnTouchListener(new View.OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent ev) {
+				Intent intent = new Intent(context,Book_Detail.class);
+				intent.putExtra("bookname",bookname);
+				intent.putExtra("writer",writer);
+				intent.putExtra("brief",brief);
+				intent.putExtra("introduce",introduce);
+				context.startActivity(intent);
+				return true;
+			}
+
+		});*/
 			
 		return convertView;
 	}
 
-	class ViewHolder {
-		LinearLayout item;
-		TextView date;
+	public class ViewHolder {
+		public LinearLayout item;
+		TextView name;
 		ImageView image;
 	}
 	

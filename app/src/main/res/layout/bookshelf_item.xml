@@ -25,5 +25,6 @@
         android:layout_height="40dp"
         android:src="@mipmap/delete"
         android:layout_gravity="right"
+        android:visibility="invisible"
         android:id="@+id/delete"/>
 </FrameLayout>

@@ -1,5 +1,7 @@
 package com.example.even1.endorsedsystemstudent.mainfragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -12,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.even1.endorsedsystemstudent.MyHome.mInfor;
 import com.example.even1.endorsedsystemstudent.MyHome.mMessage;
 import com.example.even1.endorsedsystemstudent.MyHome.mSet;
@@ -33,10 +37,22 @@ public class MyHome extends Fragment implements View.OnClickListener {
     private FragmentManager fm;
 
     private TextView tm,ti,ts,tv;
-    private ImageView im,ii,is,iv;
+    private ImageView im,ii,is,iv,head;
 
     private ScrollView scrollView;
     private LinearLayout top;
+
+    private String nickname;
+    private TextView name;
+    private String imgurl;
+
+
+    //创建实例
+    public static MyHome newInstance() {
+        MyHome fragment = new MyHome();
+        Bundle args = new Bundle();
+        return fragment;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,9 +71,11 @@ public class MyHome extends Fragment implements View.OnClickListener {
         is = (ImageView)view.findViewById(R.id.setpic);
         iv = (ImageView)view.findViewById(R.id.vippic);
 
+        head = (ImageView)view.findViewById(R.id.head);
         scrollView = (ScrollView)view.findViewById(R.id.scrollView);
         top = (LinearLayout)view.findViewById(R.id.top);
 
+        name = (TextView)view.findViewById(R.id.nickname);
         init();
         return view;
     }
@@ -81,8 +99,22 @@ public class MyHome extends Fragment implements View.OnClickListener {
         top.setFocusable(true);
         top.setFocusableInTouchMode(true);
         top.requestFocus();
+
+        //nickname = getArguments().getString("nickname");
+        SharedPreferences sp = getContext().getSharedPreferences("User", Context.MODE_PRIVATE);
+        nickname = sp.getString("name",null);
+        /*imgurl = sp.getString("img","");
+        Glide
+                .with(getActivity())
+                .load(imgurl)
+                .into(head);*/
+        name.setText(nickname);
     }
 
+
+    public void initUI(String nickname) {
+        name.setText(nickname);
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

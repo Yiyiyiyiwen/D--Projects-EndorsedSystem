@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@mipmap/homework_book"
-            android:id="@+id/imageView2"
+            android:id="@+id/pic"
             android:layout_weight="1" />
 
         <TextView

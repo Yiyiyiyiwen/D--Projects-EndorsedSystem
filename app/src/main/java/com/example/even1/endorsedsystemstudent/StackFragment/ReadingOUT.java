@@ -63,9 +63,9 @@ public class ReadingOUT extends Fragment implements View.OnClickListener{
         data.add(goods);
         goods = new Books("第五本书",R.mipmap.book);
         data.add(goods);
-        mAdapter = new HorizonListviewAdapter(getActivity(), data);
+        /*mAdapter = new HorizonListviewAdapter(getActivity(), data);
         adapter = new MyAdapter(getContext(),str,mAdapter);
-        mListView2.setAdapter(adapter);
+        mListView2.setAdapter(adapter);*/
 
         //imageView.setOnClickListener(this);
         //linearLayout.setOnClickListener(this);

@@ -116,30 +116,35 @@
                 <TextView
                     android:text="404NoaoTFound"
                     android:textSize="15dp"
+                    android:id="@+id/name"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:text="好好学习天天向上"
                     android:textSize="15dp"
+                    android:id="@+id/biref"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:text="156185615"
                     android:textSize="15dp"
+                    android:id="@+id/phone"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:text="46315635@qq.com"
                     android:textSize="15dp"
+                    android:id="@+id/email"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:text="班长"
                     android:textSize="15dp"
+                    android:id="@+id/job"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -203,18 +208,21 @@
                 <TextView
                     android:text="1998-2-28"
                     android:textSize="15dp"
+                    android:id="@+id/birth"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:text="江苏南京"
                     android:textSize="15dp"
+                    android:id="@+id/place"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:text="南京理工大学紫金学院"
                     android:textSize="15dp"
+                    android:id="@+id/school"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
