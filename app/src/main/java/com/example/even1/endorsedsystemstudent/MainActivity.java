@@ -1,37 +1,24 @@
 package com.example.even1.endorsedsystemstudent;
 
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.even1.endorsedsystemstudent.Adapter.MyViewPagerAdapter;
-import com.example.even1.endorsedsystemstudent.Login.UserManage;
-import com.example.even1.endorsedsystemstudent.View.NoScrollViewPager;
-import com.example.even1.endorsedsystemstudent.mainfragment.BookShelf;
-import com.example.even1.endorsedsystemstudent.mainfragment.MyClass;
-import com.example.even1.endorsedsystemstudent.mainfragment.MyHome;
-import com.example.even1.endorsedsystemstudent.mainfragment.Search;
-import com.example.even1.endorsedsystemstudent.mainfragment.Stacks;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import com.example.even1.endorsedsystemstudent.View.CustomizedView.NoScrollViewPager;
+import com.example.even1.endorsedsystemstudent.View.mainfragment.BookShelf;
+import com.example.even1.endorsedsystemstudent.View.mainfragment.MyClass;
+import com.example.even1.endorsedsystemstudent.View.mainfragment.MyHome;
+import com.example.even1.endorsedsystemstudent.View.mainfragment.Search;
+import com.example.even1.endorsedsystemstudent.View.mainfragment.Stacks;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-
-import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
 

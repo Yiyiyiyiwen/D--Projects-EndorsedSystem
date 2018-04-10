@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.even1.endorsedsystemstudent.MyHome.mMessage">
+    tools:context=".View.MyHome.mMessage">
 
 
     <LinearLayout
@@ -33,8 +33,10 @@
             android:layout_weight="1" />
 
     </LinearLayout>
-    <ListView
+    <com.example.even1.endorsedsystemstudent.View.CustomizedView.MyListview
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listview"></ListView>
+        android:divider="@drawable/listviewline1"
+        android:dividerHeight="1dp"
+        android:id="@+id/listview"></com.example.even1.endorsedsystemstudent.View.CustomizedView.MyListview>
 </LinearLayout>

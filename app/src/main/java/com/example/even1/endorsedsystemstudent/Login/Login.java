@@ -102,11 +102,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     String birth = js.getString("birth");
                     String place = js.getString("place");
                     String school = js.getString("school");
-                    //String imgurl = js.getString("img");
+                    String imgurl = js.getString("img");
                     System.out.println(
                             "id-------------"+id+"nickname---------------"+nickname
                     );
-                    Toast.makeText(Login.this,"id------"+id, Toast.LENGTH_SHORT).show();
+
                     if(i==200){
                         SharedPreferences.Editor editor= pref.edit();
                         editor.putString("USER_NAME",name.getText().toString());
@@ -121,7 +121,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         editor.putString("birth",birth);
                         editor.putString("place",place);
                         editor.putString("school",school);
-                        //editor.putString("img",imgurl);
+                        editor.putString("img",imgurl);
                         editor.commit();
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);

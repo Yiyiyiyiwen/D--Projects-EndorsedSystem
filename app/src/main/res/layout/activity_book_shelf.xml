@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.even1.endorsedsystemstudent.mainfragment.BookShelf">
+    tools:context=".View.mainfragment.BookShelf">
 
 
     <android.support.v7.widget.Toolbar
@@ -57,30 +57,22 @@
                     android:text="《安徒生童话》"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:textSize="16dp"
+                    android:padding="10dp"
+                    android:textSize="18dp"
+                    android:background="@drawable/book"
                     android:textColor="@color/white"
-                    android:id="@+id/textView6" />
+                    android:id="@+id/bookname" />
 
-                <TextView
-                    android:text="第一卷 第三篇 丑小鸭"
-                    android:layout_margin="5dp"
-                    android:paddingLeft="5dp"
-                    android:textSize="16dp"
-                    android:textColor="@color/white"
-                    android:layout_width="match_parent"
+                <Button
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView5" />
-
-                <TextView
                     android:text="继续阅读"
-                    android:layout_margin="5dp"
-                    android:paddingLeft="5dp"
-                    android:textSize="16dp"
-                    android:textColor="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView3" />
+                    android:layout_gravity="left"
+                    android:textColor="@color/darkgrey"
+                    android:background="@color/transparent"
+                    android:layout_marginTop="20dp"
+                    />
+
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

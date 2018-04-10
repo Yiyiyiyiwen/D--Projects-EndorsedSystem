@@ -33,10 +33,10 @@
              </LinearLayout>
 
 
-    <com.example.even1.endorsedsystemstudent.View.HorizontalListView
+    <com.example.even1.endorsedsystemstudent.View.CustomizedView.HorizontalListView
             android:id="@+id/horizontal_listview"
             android:layout_width="wrap_content"
             android:layout_height="170dp" >
-        </com.example.even1.endorsedsystemstudent.View.HorizontalListView>
+        </com.example.even1.endorsedsystemstudent.View.CustomizedView.HorizontalListView>
 
 </LinearLayout>

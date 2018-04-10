@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.even1.endorsedsystemstudent.R;
-import com.example.even1.endorsedsystemstudent.StackFragment.Book_List;
-import com.example.even1.endorsedsystemstudent.View.HorizontalListView;
+import com.example.even1.endorsedsystemstudent.View.StackFragment.Book_List;
+import com.example.even1.endorsedsystemstudent.View.CustomizedView.HorizontalListView;
 
 /**
  * Created by Even1 on 2018/2/1.

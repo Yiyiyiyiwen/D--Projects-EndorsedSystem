@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.even1.endorsedsystemstudent.R;
 
 import java.util.ArrayList;
@@ -49,6 +50,12 @@ public class MyClassAdapter extends BaseAdapter {
             mHolder.pic = (ImageView)convertView.findViewById(R.id.pic);
             mHolder.name = (TextView)convertView.findViewById(R.id.name);
             convertView.setTag(mHolder);
+
+            Glide
+                    .with(context)
+                    .load(list.get(position).get("pic"))
+                    .into(mHolder.pic);
+            mHolder.name.setText((CharSequence) list.get(position).get("name"));
         }
         else{
             mHolder = (ViewHolder) convertView.getTag();

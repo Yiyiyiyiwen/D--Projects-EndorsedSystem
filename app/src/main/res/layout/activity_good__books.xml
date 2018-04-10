@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.even1.endorsedsystemstudent.StackFragment.Good_Books">
+    tools:context=".View.StackFragment.Good_Books">
 
     <include
         android:layout_width="match_parent"

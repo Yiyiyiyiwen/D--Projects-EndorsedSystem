@@ -30,7 +30,6 @@ dependencies {
     })
     compile 'com.github.bumptech.glide:glide:4.3.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
-
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.jude:rollviewpager:1.2.9'
@@ -44,4 +43,11 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/android-async-http-1.4.9.jar')
     compile files('libs/volley.jar')
+    compile files('libs/antlr-2.7.4.jar')
+    compile files('lib/cpdetector_1.0.10.jar')
+    compile files('lib/antlr-2.7.4.jar')
+    compile files('lib/chardet-1.0.jar')
+    compile files('lib/jargs-1.0.jar')
+    compile 'org.litepal.android:core:1.5.1'
+    compile project(':textviewpackage')
 }

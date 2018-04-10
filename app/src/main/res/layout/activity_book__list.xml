@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.even1.endorsedsystemstudent.StackFragment.Book_List">
+    tools:context=".View.StackFragment.Book_List">
 
 
     <include
@@ -14,10 +14,22 @@
         android:layout_height="wrap_content"
         layout="@layout/toolbar" />
 
-    <ListView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listview" />
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:id="@+id/empty"
+            />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listview" />
+    </FrameLayout>
+
 
 
 </LinearLayout>

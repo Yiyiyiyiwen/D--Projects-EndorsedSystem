@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.even1.endorsedsystemstudent.MyClass.Homework_detail">
+    tools:context=".View.MyClass.Homework_detail">
 
 
     <include

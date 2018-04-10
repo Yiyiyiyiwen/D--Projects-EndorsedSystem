@@ -13,7 +13,7 @@
             android:layout_height="50dp"
             android:src="@mipmap/head"
             app:civ_border_color="#000000"
-            android:id="@+id/head" />
+            android:id="@+id/pic" />
 
         <TextView
             android:text="TextView"

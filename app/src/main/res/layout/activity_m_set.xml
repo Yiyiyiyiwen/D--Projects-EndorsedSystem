@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.even1.endorsedsystemstudent.MyHome.mSet">
+    tools:context=".View.MyHome.mSet">
 
     <LinearLayout
         android:orientation="horizontal"

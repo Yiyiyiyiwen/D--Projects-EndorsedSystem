@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.even1.endorsedsystemstudent.mainfragment.MyHome;
+import com.example.even1.endorsedsystemstudent.View.mainfragment.MyHome;
 
 import java.util.List;
 

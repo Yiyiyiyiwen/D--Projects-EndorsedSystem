@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.even1.endorsedsystemstudent.StackFragment.Rank_Detail">
+    tools:context=".View.StackFragment.Rank_Detail">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
