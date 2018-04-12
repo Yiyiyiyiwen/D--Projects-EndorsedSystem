@@ -81,6 +81,10 @@ public class ReadingIN extends Fragment implements View.OnClickListener, Adapter
         primary.setOnClickListener(this);
         middle.setOnClickListener(this);
         high.setOnClickListener(this);
+
+        myList1.clear();
+        myList2.clear();
+        myList3.clear();
         initView2();
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -176,9 +180,6 @@ public class ReadingIN extends Fragment implements View.OnClickListener, Adapter
 
                             }}
                         }
-
-
-
                     }
 
                 } catch (UnsupportedEncodingException e) {
@@ -220,7 +221,7 @@ public class ReadingIN extends Fragment implements View.OnClickListener, Adapter
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        switch (view.getId()){
+        switch (parent.getId()){
             case R.id.horizontal_listview:
                 Intent intent = new Intent(getActivity(),Book_Detail.class);
                 Bundle bundle = new Bundle();

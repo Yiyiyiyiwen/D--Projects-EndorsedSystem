@@ -38,7 +38,6 @@ public class mSearchLayout extends LinearLayout {
     private ImageView ib_searchtext_delete;
     private EditText et_searchtext_search;
     private LinearLayout searchview;
-    private Button bt_text_search_back;
     private TextView tvclearolddata;
 
 
@@ -96,8 +95,6 @@ public class mSearchLayout extends LinearLayout {
         et_searchtext_search = (EditText) searchview.findViewById(com.czp.searchmlist.R.id.et_searchtext_search);
         et_searchtext_search.setBackgroundResource(msearch_baground);
         et_searchtext_search.setHint(msearch_hint);
-        //搜索返回时一个按钮
-        bt_text_search_back = (Button) searchview.findViewById(com.czp.searchmlist.R.id.buttonback);
         //清除历史记录
         tvclearolddata = (TextView) searchview.findViewById(com.czp.searchmlist.R.id.tvclearolddata);
 
@@ -136,10 +133,8 @@ public class mSearchLayout extends LinearLayout {
             //如果编辑框中文本的长度大于0就显示删除按钮否则不显示
             if(s.length() > 0){
                 ib_searchtext_delete.setVisibility(View.VISIBLE);
-                bt_text_search_back.setText(searchtitle);
             }else{
                 ib_searchtext_delete.setVisibility(View.GONE);
-                bt_text_search_back.setText(backtitle);
             }
         }
 
@@ -178,20 +173,6 @@ public class mSearchLayout extends LinearLayout {
 
 
 
-        bt_text_search_back.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String searchtext = et_searchtext_search.getText().toString().trim();
-                if (bt_text_search_back.getText().toString().equals(searchtitle)) {
-//                    Toast.makeText(context, "点击button搜索" + searchtext, Toast.LENGTH_SHORT).show();
-                        executeSearch_and_NotifyDataSetChanged(searchtext);
-                } else {
-//                    Toast.makeText(context, "点击button  返回", Toast.LENGTH_SHORT).show();
-                    if (sCBlistener != null)
-                        sCBlistener.Back();
-                }
-            }
-        });
 
 
 

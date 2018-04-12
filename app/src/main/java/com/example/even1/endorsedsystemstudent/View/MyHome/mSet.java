@@ -4,12 +4,14 @@ import android.content.DialogInterface;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.even1.endorsedsystemstudent.R;
 import com.example.even1.endorsedsystemstudent.Util.setListViewHeight;
@@ -50,35 +52,44 @@ public class mSet extends Fragment implements AdapterView.OnItemClickListener{
 
                 break;
             case 1:
-                showMultiChoiceDialogFragment(view);
+                showMultiChoiceDialog();
                 break;
             default:
                 break;
         }
     }
 
-    public void showMultiChoiceDialogFragment(View view) {
-        MultiChoiceDialogFragment multiChoiceDialogFragment = new MultiChoiceDialogFragment();
-        final String[] items = {"武侠小说", "推理小说", "悬疑小说", "历史小说", "军事小说", "言情小说",
+    private void showMultiChoiceDialog() {
+        final String items[] = {"武侠小说", "推理小说", "悬疑小说", "历史小说", "军事小说", "言情小说",
                 "科幻小说", "网游小说", "穿越小说", "玄幻小说"};
-        final List<Integer> integerList = new ArrayList<>();
-        multiChoiceDialogFragment.show("请选择你喜爱的作品风格", items, new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                if (isChecked) {
-                    integerList.add(which);
-                } else {
-                    integerList.remove(which);
-                }
-            }
-        }, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String hint = "";
-                for (int i = 0; i < integerList.size(); i++) {
-                    hint = items[integerList.get(i)] + hint;
-                }
-            }
-        }, getActivity().getFragmentManager());
+        final boolean checkedItems[] = {false, false, false, false,false, false, false,false, false, false};
+        AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                .setTitle("请选择你喜爱的作品风格")//设置对话框的标题
+                .setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        checkedItems[which] = isChecked;
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        for (int i = 0; i < checkedItems.length; i++) {
+                            if (checkedItems[i]) {
+                                //Toast.makeText(getActivity(), "选中了" + i, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        dialog.dismiss();
+                    }
+
+                }).create();
+
+        dialog.show();
     }
 }

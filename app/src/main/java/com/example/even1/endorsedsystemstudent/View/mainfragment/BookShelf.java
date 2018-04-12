@@ -1,6 +1,7 @@
 package com.example.even1.endorsedsystemstudent.View.mainfragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,8 +44,9 @@ import cz.msebera.android.httpclient.Header;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class BookShelf extends Fragment implements AdapterView.OnItemLongClickListener ,AdapterView.OnItemClickListener{
+public class BookShelf extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
 
+    private Button manage;
     private Toolbar toolbar;
     private GridView gridview;
     private TextView mbookname;
@@ -62,7 +66,7 @@ public class BookShelf extends Fragment implements AdapterView.OnItemLongClickLi
     private android.os.Handler handler = new android.os.Handler() {
         public void handleMessage(Message msg) {
             if (msg.what == IS_FINISH) {
-                adapter = new ImageListAdapter(getContext(),mybooklist);
+                adapter = new ImageListAdapter(getContext(),mybooklist,mbookid);
                 gridview.setAdapter(adapter);
             }
         }
@@ -76,17 +80,10 @@ public class BookShelf extends Fragment implements AdapterView.OnItemLongClickLi
         gridview = (GridView)view.findViewById(R.id.gridview);
         keepread = (ImageView)view.findViewById(R.id.keepread);
         mbookname = (TextView)view.findViewById(R.id.bookname);
-
+        manage = (Button)view.findViewById(R.id.manage);
         init();
 
         return view;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        menu.clear();
-        getActivity().getMenuInflater().inflate(R.menu.bookshelfmenu,menu);
     }
 
     private void init() {
@@ -97,7 +94,7 @@ public class BookShelf extends Fragment implements AdapterView.OnItemLongClickLi
         SharedPreferences sp = getContext().getSharedPreferences("User", MODE_PRIVATE);
         userid = sp.getInt("id",0);
         getbookid(userid);
-        gridview.setOnItemLongClickListener(this);
+        manage.setOnClickListener(this);
         gridview.setOnItemClickListener(this);
     }
 
@@ -200,56 +197,34 @@ public class BookShelf extends Fragment implements AdapterView.OnItemLongClickLi
     }
 
 
-    @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        if (isShowDelete) {
-            isShowDelete = false;
-
-        } else {
-            isShowDelete = true;
-            adapter.setIsShowDelete(isShowDelete);
-            gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view,
-                                        int position, long id) {
-                    delete(position);//删除选中项
-                    adapter = new ImageListAdapter(getActivity(), myList);//重新绑定一次adapter
-                    gridview.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();//刷新gridview
-
-                }
-
-            });
-        }
-
-        adapter.setIsShowDelete(isShowDelete);//setIsShowDelete()方法用于传递isShowDelete值
-
-        return true;
-    }
-
-    private void delete(int position) {//删除选中项方法
+    /*private void delete(int position) {//删除选中项方法
         ArrayList<HashMap<String, Object>> newList = new ArrayList<HashMap<String, Object>>();
         if (isShowDelete) {
-            myList.remove(position);
+            mybooklist.remove(position);
             isShowDelete = false;
         }
-        newList.addAll(myList);
-        myList.clear();
-        myList.addAll(newList);
-    }
+        newList.addAll(mybooklist);
+        mybooklist.clear();
+        mybooklist.addAll(newList);
+    }*/
 
     @Override
     public void onResume() {
         super.onResume();
         SharedPreferences booksp = getActivity().getSharedPreferences("recentbook", MODE_PRIVATE);
-        String bookname = booksp.getString("bookname",null);
+        String bookname = booksp.getString("bookname","你最近还没有读过书哦");
         String bookimg = booksp.getString("bookimg",null);
         Glide
                 .with(getActivity())
                 .load(bookimg)
                 .into(keepread);
-        mbookname.setText("《"+bookname+"》");
+        if(bookimg==null){
+            mbookname.setText("你最近还没有读过书哦");
+        }
+        else{
+            mbookname.setText("《"+bookname+"》");
+        }
+
     }
 
     @Override
@@ -261,18 +236,59 @@ public class BookShelf extends Fragment implements AdapterView.OnItemLongClickLi
         startActivity(intent);
         SharedPreferences sp = getActivity().getSharedPreferences("recentbook", MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit(); //SharedPreferences 本身不能读写数据，需要使用Editor
-        editor.putString("bookname", String.valueOf(myList.get(mbookid.get(position)-1).get("name")));
-        editor.putString("bookimg", String.valueOf(myList.get(mbookid.get(position)-1).get("image")));
-        editor.commit(); //提交
+
+        for(int i=0;i<myList.size();i++){
+            if(myList.get(i).get("id")==mbookid.get(position)){
+                String bookname = String.valueOf(myList.get(i).get("name"));
+                String bookimg = String.valueOf(myList.get(i).get("image"));
+                editor.putString("bookname",bookname);
+                editor.putString("bookimg",bookimg);
+                editor.commit();
+                break;
+            }
+        }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+    public void onClick(View v) {
+        switch (v.getId()){
             case R.id.manage:
-                gridview.setOnItemLongClickListener(this);
-        }
-        return false;
-    }
+                if (isShowDelete) {
+                    isShowDelete = false;
+                } else {
+                    isShowDelete = true;
+                    adapter.setIsShowDelete(isShowDelete);
+                    /*gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view,
+                                                final int position, long id) {
+                            final AlertDialog.Builder builer = new AlertDialog.Builder(getActivity());
+                            builer.setTitle("删除");
+                            builer.setMessage("确认要删除该本书吗？");
+                            builer.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            builer.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //delete(position);//删除选中项
+                                    adapter = new ImageListAdapter(getActivity(), mybooklist);//重新绑定一次adapter
+                                    gridview.setAdapter(adapter);
+                                    adapter.notifyDataSetChanged();//刷新gridview
+                                }
+                            });
+                            AlertDialog dialog = builer.create();
+                            dialog.show();
+                        }
+
+                    });*/
+                }
+                adapter.setIsShowDelete(isShowDelete);//setIsShowDelete()方法用于传递isShowDelete值
+                break;
+        }
+    }
 }

@@ -1,15 +1,21 @@
 package com.example.even1.endorsedsystemstudent;
 
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.even1.endorsedsystemstudent.Adapter.MyViewPagerAdapter;
+import com.example.even1.endorsedsystemstudent.Login.Login;
 import com.example.even1.endorsedsystemstudent.View.CustomizedView.NoScrollViewPager;
 import com.example.even1.endorsedsystemstudent.View.mainfragment.BookShelf;
 import com.example.even1.endorsedsystemstudent.View.mainfragment.MyClass;
@@ -28,11 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Fragment>list;
     private MyViewPagerAdapter adapter;
     private String[] titles = {"书架","书库","班级","搜索","我的"};
-    private TextView name;
-    //private String id,nickname,state,biref,phone,email,birth,job,place,school;
-
-    private String nickname ;
-    private Fragment myhome = new MyHome();
+    KeyEvent event;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,5 +73,25 @@ public class MainActivity extends AppCompatActivity {
         myHome.setArguments(bundle);*/
 
     }
+    private long exitTime = 0;
 
+    @Override
+    public void onBackPressed() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

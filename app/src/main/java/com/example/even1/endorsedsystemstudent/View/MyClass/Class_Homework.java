@@ -34,17 +34,16 @@ public class Class_Homework extends AppCompatActivity implements AdapterView.OnI
     private Toolbar toolbar;
     private ListView listView;
     private TextView Ttitle;
-    private String[] title = {"阅读《红楼梦》第23回","阅读《红楼梦》第23回","阅读《红楼梦》第23回","阅读《红楼梦》第23回","阅读《红楼梦》第23回"};
-    private String[] time = {"2018.01.02","2018.01.03","2018.01.04","2018.01.05","2018.01.06"};
     private int id,uid,bookid,chapterid,oid;
     private String brief,ctime,endtime;
-    private String mbookname;
-    private mInfor mInfor;
+    private String mbookname,jianjie;
     List<Map<String,Object>> list = new ArrayList<>();
     List<Map<String,Object>> infor = new ArrayList<>();
-    List<String> bookname = new ArrayList<>();
+
+    private List<Map<String,Object>> book = new ArrayList<>();
+    private List<Map<String,Object>>mbookid = new ArrayList<>();
+    private List<String>mBookname = new ArrayList<>();
     private int choose,mid;
-    private Homework_detail homework_detail;
     public int IS_FINISH;
 
     private android.os.Handler handler = new android.os.Handler() {
@@ -81,10 +80,10 @@ public class Class_Homework extends AppCompatActivity implements AdapterView.OnI
                 finish();
             }
         });
-        getbookcase();
+
         Bundle bundle=getIntent().getExtras();
         mid=bundle.getInt("id");
-
+        getbookcase();
         listView.setOnItemClickListener(this);
     }
 
@@ -103,17 +102,21 @@ public class Class_Homework extends AppCompatActivity implements AdapterView.OnI
                         uid = js.getInt("uid");
                         bookid = js.getInt("bookid");
 
+                        System.out.println("bookid------------------"+bookid);
                         chapterid = js.getInt("chapterid");
                         oid = js.getInt("oid");
                         brief = js.getString("brief");
                         //时间戳转换
                         ctime = mInfor.stampToDate(js.getString("ctime"));
                         endtime = mInfor.stampToDate(js.getString("endtime"));
+
                         Map<String,Object> map = new HashMap<>();
-                        map.put("pic",R.mipmap.homework_book);
-                        map.put("title","阅读《"+bookname.get(bookid-1)+"》第"+chapterid+"章");
-                        map.put("time",ctime);
-                        list.add(map);
+                        map.put("bookid",bookid);
+                        map.put("brief",brief);
+                        map.put("ctime",ctime);
+                        map.put("endtime",endtime);
+                        map.put("chapter",chapterid);
+                        mbookid.add(map);
 
                         Map<String,Object> informap = new HashMap<>();
                         informap.put("id",id);
@@ -125,11 +128,6 @@ public class Class_Homework extends AppCompatActivity implements AdapterView.OnI
                         informap.put("ctime",ctime);
                         informap.put("endtime",endtime);
                         infor.add(informap);
-
-                        Message msg = Message.obtain();
-                        msg.obj = bytes;
-                        msg.what = IS_FINISH;
-                        handler.sendMessage(msg);
                     }
 
                 } catch (UnsupportedEncodingException e) {
@@ -137,6 +135,7 @@ public class Class_Homework extends AppCompatActivity implements AdapterView.OnI
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                getbookname();
             }
 
             @Override
@@ -145,6 +144,36 @@ public class Class_Homework extends AppCompatActivity implements AdapterView.OnI
             }
         });
     }
+
+    private void getbookname() {
+        int position;
+        int mposition;
+        System.out.println(mbookid.size());
+        for(mposition=0;mposition<mbookid.size();mposition++){
+            for(position=0;position<book.size();position++){
+                if(book.get(position).get("id")==mbookid.get(mposition).get("bookid")){
+                    mBookname.add(String.valueOf(book.get(position).get("bookname")));
+                    Map<String,Object> map = new HashMap<>();
+                    map.put("pic",R.mipmap.homework_book);
+                    map.put("title","阅读《"+String.valueOf(book.get(position).get("bookname"))+"》第"+mbookid.get(mposition).get("chapter")+"章");
+                    map.put("time",mbookid.get(mposition).get("ctime"));
+                    list.add(map);
+
+
+                    System.out.println("count------------------"+mposition+"mbookname-------------"+String.valueOf(book.get(position).get("bookname")));
+                    Message msg = Message.obtain();
+                    msg.what = IS_FINISH;
+                    handler.sendMessage(msg);
+                }
+                if(list.size()==mbookid.size()){
+                    break;
+                }
+            }
+
+
+        }
+    }
+
     public void getbookcase(){
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "http://118.25.100.167/android/book.action";
@@ -158,7 +187,10 @@ public class Class_Homework extends AppCompatActivity implements AdapterView.OnI
                         JSONObject js = array.getJSONObject(j);
                         int id = js.getInt("id");
                         mbookname = js.getString("bookname");
-                        bookname.add(mbookname);
+                        Map<String,Object> map = new HashMap<>();
+                        map.put("id",id);
+                        map.put("bookname",mbookname);
+                        book.add(map);
                         System.out.println("j------------------"+j+"mbookname-------------"+mbookname);
                     }
 

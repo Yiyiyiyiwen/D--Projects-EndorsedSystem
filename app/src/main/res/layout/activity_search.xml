@@ -23,10 +23,10 @@
             android:textSize="20dp"
             />
     </android.support.v7.widget.Toolbar>
-<com.czp.searchmlist.mSearchLayout
+<com.example.even1.endorsedsystemstudent.View.CustomizedView.mSearchLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/msearchlayout"
     app:search_hint="请输入书名..."
-    ></com.czp.searchmlist.mSearchLayout>
+    ></com.example.even1.endorsedsystemstudent.View.CustomizedView.mSearchLayout>
 </LinearLayout>

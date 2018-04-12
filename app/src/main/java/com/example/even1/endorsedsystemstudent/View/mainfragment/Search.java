@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.czp.searchmlist.mSearchLayout;
 import com.example.even1.endorsedsystemstudent.R;
+import com.example.even1.endorsedsystemstudent.View.CustomizedView.mSearchLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;

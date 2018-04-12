@@ -7,8 +7,7 @@
         android:id="@+id/layout_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:padding="5dp"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/red_color"
@@ -27,35 +26,35 @@
             android:id="@+id/black_color"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="#000"
+            android:background="@drawable/underline"
             android:layout_marginLeft="10dp"/>
 
         <TextView
             android:id="@+id/black_color2"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="#222"
+            android:background="@drawable/drawline"
             android:layout_marginLeft="10dp"/>
 
         <TextView
             android:id="@+id/black_color3"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="#444"
+            android:background="@drawable/circle"
             android:layout_marginLeft="10dp"/>
 
         <TextView
             android:id="@+id/black_color4"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="#666"
+            android:background="@drawable/bolang"
             android:layout_marginLeft="10dp"/>
 
         <TextView
             android:id="@+id/black_color5"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="#888"
+            android:background="@drawable/square"
             android:layout_marginLeft="10dp"/>
 
         <TextView

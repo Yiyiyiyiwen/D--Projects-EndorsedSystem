@@ -77,6 +77,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     Toast.makeText(Login.this, "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
                 } else {
                     loginByAsyncHttpClientGet(mName, mPassword);
+                    finish();
                 }
         }
     }

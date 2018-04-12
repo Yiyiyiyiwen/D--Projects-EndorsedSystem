@@ -28,7 +28,8 @@
             android:drawableLeft="@mipmap/explore_search_icon"
             android:background="@drawable/search_baground_shap"
             android:singleLine="true"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:imeOptions="actionSearch"
             android:hint="@string/search_hint"
 
@@ -54,16 +55,5 @@
 
     </RelativeLayout>
 
-    <Button
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/search_cancel"
-        android:id="@+id/buttonback"
-        android:layout_toRightOf="@id/relativeLayout"
-        android:layout_gravity="center_vertical"
-        android:textSize="17sp"
-        android:background="#00000000"
-        />
 </LinearLayout>
 
