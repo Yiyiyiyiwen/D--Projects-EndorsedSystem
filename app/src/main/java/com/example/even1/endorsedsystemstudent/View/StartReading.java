@@ -230,7 +230,6 @@ public class StartReading extends AppCompatActivity {
                         CommonAction.build(controller, view, R.id.black_color3, 3, Color.BLUE, "");
                         CommonAction.build(controller, view, R.id.black_color4, 4, Color.WHITE, "");
                         CommonAction.build(controller, view, R.id.black_color5, 5, Color.GRAY, "");
-                        CommonAction.build(controller,view,R.id.tv_note,1,Color.BLACK,edit_text.getText().toString());
                     }
                 });
         cctv.build().setSelectListener(new OnSelectListener() {

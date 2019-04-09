@@ -120,7 +120,7 @@ public class ReadingIN extends Fragment implements View.OnClickListener, Adapter
                         img = "http://118.25.100.167"+js.getString("img");
                         type = js.getString("types");
                         String typearray[] = type.split(",");
-                        System.out.println("bookname------------------"+bookname+"type-------------------"+typearray[0]+typearray[1]);
+                        System.out.println("bookname------------------"+bookname+"type-------------------");
                         for(int number=0;number<typearray.length;number++){
                             if(Integer.parseInt(typearray[number])==2){{
                                 for(int count=0;count<typearray.length;count++){

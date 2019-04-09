@@ -73,7 +73,7 @@ public class BookShelf extends Fragment implements AdapterView.OnItemLongClickLi
     private android.os.Handler handler = new android.os.Handler() {
         public void handleMessage(Message msg) {
             if (msg.what == IS_FINISH) {
-                adapter = new ImageListAdapter(getContext(),mybooklist);
+                adapter = new ImageListAdapter(getContext(),mybooklist,mbookid);
                 gridview.setAdapter(adapter);
             }
         }

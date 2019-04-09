@@ -37,7 +37,11 @@ public class ImageListAdapter extends BaseAdapter {
         inflater = LayoutInflater.from(context);
         this.mbookid = mbookid;
     }
-
+    public ImageListAdapter(Context context, ArrayList<HashMap<String,Object>> myList) {
+        this.context = context;
+        this.myList = myList;
+        inflater = LayoutInflater.from(context);
+    }
     @Override
     public int getCount() {
         return myList.size();

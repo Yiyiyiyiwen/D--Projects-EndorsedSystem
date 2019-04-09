@@ -97,7 +97,7 @@ public class mSearchLayout extends LinearLayout {
         et_searchtext_search.setBackgroundResource(msearch_baground);
         et_searchtext_search.setHint(msearch_hint);
         //搜索返回时一个按钮
-        bt_text_search_back = (Button) searchview.findViewById(com.czp.searchmlist.R.id.buttonback);
+        //bt_text_search_back = (Button) searchview.findViewById(com.czp.searchmlist.R.id.buttonback);
         //清除历史记录
         tvclearolddata = (TextView) searchview.findViewById(com.czp.searchmlist.R.id.tvclearolddata);
 
