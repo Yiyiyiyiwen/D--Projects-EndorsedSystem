@@ -118,6 +118,7 @@ public class mMessage extends Fragment {
                         mbookname = js.getString("bookname");
                         bookname.add(mbookname);
                     }
+                    System.out.println(bookname);
 
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
