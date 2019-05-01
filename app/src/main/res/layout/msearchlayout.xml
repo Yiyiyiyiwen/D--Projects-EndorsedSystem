@@ -92,7 +92,168 @@
                 >
 
             </com.czp.searchmlist.selfSearchGridView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="2dp"
+                android:padding="20px"
+                android:orientation="vertical"
+                android:id="@+id/result"
+                android:visibility="invisible"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/huise"
+                        android:text="搜索结果"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        />
+
+                </LinearLayout>
+
+
+                <include
+                    android:id="@+id/shadowview"
+                    layout="@layout/shadow_set_layout" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginRight="20px"
+                        android:id="@+id/bookimg"
+                        android:src="@mipmap/book"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5px">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="书名："/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/bookname"
+                                android:text="《西游记》"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5px">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="作者："/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/writer"
+                                android:text="123"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5px">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="简介："/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="5"
+                                android:ellipsize="end"
+                                android:id="@+id/des"
+                                android:text="《西游记》是中国古典四大名著之一，是由明代小说家吴承恩所创作的中国古代第一部浪漫主义的长篇神魔小说。主要描写了孙悟空、猪八戒、沙僧三人保护唐僧西行取经，沿途遇到八十一难，一路降妖伏魔，化险为夷，最后到达西天、取得真经的故事。取材于《大唐三藏取经诗话》和民间传说。">
+
+                            </TextView>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+           <!-- <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20px"
+                    android:id="@+id/bookimg"
+                    android:src="@mipmap/book"/>
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:orientation="vertical">
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginBottom="5px">
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="书名："/>
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:id="@+id/bookname"
+                           android:text="《西游记》"/>
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginBottom="5px">
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="作者："/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:id="@+id/writer"
+                       android:text="吴承恩"/>
+                   </LinearLayout>
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginBottom="5px">
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="简介："/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:id="@+id/des"
+                       android:maxLines="5"
+                       android:ellipsize="end"
+                       android:text="《西游记》是中国古典四大名著之一，是由明代小说家吴承恩所创作的中国古代第一部浪漫主义的长篇神魔小说。主要描写了孙悟空、猪八戒、沙僧三人保护唐僧西行取经，沿途遇到八十一难，一路降妖伏魔，化险为夷，最后到达西天、取得真经的故事。取材于《大唐三藏取经诗话》和民间传说。","introduce":"西游记》是中国古典四大名著之一，是由明代小说家吴承恩所创作的中国古代第一部浪漫主义的长篇神魔小说。主要描写了孙悟空、猪八戒、沙僧三人保护唐僧西行取经，沿途遇到八十一难，一路降妖伏魔，化险为夷，最后到达西天、取得真经的故事。取材于《大唐三藏取经诗话》和民间传说。"/>
+               </LinearLayout>
+               </LinearLayout>
+            </LinearLayout>-->
         </LinearLayout>
 
     </ScrollView>

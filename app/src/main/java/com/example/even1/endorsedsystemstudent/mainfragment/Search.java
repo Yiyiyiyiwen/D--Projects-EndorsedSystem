@@ -1,14 +1,19 @@
 package com.example.even1.endorsedsystemstudent.mainfragment;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.czp.searchmlist.mSearchLayout;
+
 import com.example.even1.endorsedsystemstudent.R;
+import com.example.even1.endorsedsystemstudent.StackFragment.Book_List;
+import com.example.even1.endorsedsystemstudent.View.mSearchLayout;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +43,7 @@ public class Search extends Fragment {
             @Override
             public void Search(String str) {
                 //进行或联网搜索
+                System.out.println(str);
             }
             @Override
             public void Back() {

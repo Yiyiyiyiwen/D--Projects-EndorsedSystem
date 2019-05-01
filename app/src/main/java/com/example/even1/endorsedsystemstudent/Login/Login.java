@@ -29,7 +29,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView appname;
+    private TextView appname,register;
     private EditText name,pass;
     private Button button;
     private int loginstate = 0;
@@ -45,6 +45,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         name = (EditText)findViewById(R.id.usename);
         pass = (EditText)findViewById(R.id.password);
         button = (Button)findViewById(R.id.submit);
+        register = (TextView)findViewById(R.id.register);
         rememberpass = (CheckBox)findViewById(R.id.remember_password) ;
 
         init();
@@ -63,7 +64,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             rememberpass.setChecked(true);
         }
         button.setOnClickListener(this);
-
+        register.setOnClickListener(this);
     }
 
     @Override
@@ -79,6 +80,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     loginByAsyncHttpClientGet(mName, mPassword);
                     finish();
                 }
+                break;
+            case R.id.register:
+                startActivity(new Intent(this,Register.class));
         }
     }
     public void loginByAsyncHttpClientGet(final String userName, final String passWord) {

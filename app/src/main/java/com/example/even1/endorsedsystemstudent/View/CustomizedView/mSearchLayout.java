@@ -1,9 +1,13 @@
 package com.example.even1.endorsedsystemstudent.View.CustomizedView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -17,14 +21,28 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.czp.searchmlist.FlowLayout;
 import com.czp.searchmlist.SearchOldDataAdapter;
 import com.czp.searchmlist.selfSearchGridView;
+import com.example.even1.endorsedsystemstudent.R;
+import com.example.even1.endorsedsystemstudent.StackFragment.Book_List;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+
+import cz.msebera.android.httpclient.Header;
 
 
 /**
@@ -40,6 +58,9 @@ public class mSearchLayout extends LinearLayout {
     private LinearLayout searchview;
     private TextView tvclearolddata;
 
+    private TextView bookname,writer,des;
+    private ImageView bookimg;
+    private LinearLayout result;
 
     //历史搜索
     private selfSearchGridView gridviewolddata;
@@ -104,7 +125,11 @@ public class mSearchLayout extends LinearLayout {
         hotflowLayout =  (FlowLayout)searchview.findViewById(com.czp.searchmlist.R.id.id_flowlayouthot);
 
 
-
+        bookname = (TextView) searchview.findViewById(R.id.bookname);
+        writer = (TextView) searchview.findViewById(R.id.writer);
+        des = (TextView) searchview.findViewById(R.id.des);
+        bookimg = (ImageView)searchview.findViewById(R.id.bookimg);
+        result = (LinearLayout)searchview.findViewById(R.id.result);
 
 
         setLinstener();
@@ -139,7 +164,44 @@ public class mSearchLayout extends LinearLayout {
         }
 
     }
+    private void gebook(String searchtext){
+        AsyncHttpClient client = new AsyncHttpClient();
+        String url = "http://118.25.100.167/android/booksearch.action?keyword=西";
+        client.get(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                try {
+                    String resultDate = new String(bytes,"utf-8");
+                    JSONArray array = new JSONArray(resultDate);
+                   // for(int j=0;j<array.length();j++){
+                        JSONObject js = array.getJSONObject(0);
+                        System.out.println(js);
+                        if(js!=null){
+                            result.setVisibility(View.VISIBLE);
+                            bookname.setText("《"+js.getString("bookname")+"》");
+                            writer.setText(js.getString("writer"));
+                            des.setText(js.getString("brief"));
 
+                            String url = "http://118.25.100.167"+js.getString("img");
+                            Glide.with(getContext())
+                                    .load(url)
+                                    .into(bookimg);
+                        }
+
+                   //  }
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+                Toast.makeText(getContext(), "请求失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     private void setLinstener() {
 
 
@@ -161,7 +223,8 @@ public class mSearchLayout extends LinearLayout {
 
                     String searchtext = et_searchtext_search.getText().toString().trim();
                     //dosoming
-//                    Toast.makeText(context, "搜索" +searchtext, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "搜索" +searchtext, Toast.LENGTH_SHORT).show();
+                    gebook(searchtext);
 
                     executeSearch_and_NotifyDataSetChanged(searchtext);
 

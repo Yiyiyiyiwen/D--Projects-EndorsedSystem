@@ -24,7 +24,7 @@
             android:id="@+id/head" />
 
         <TextView
-            android:text="我是APP名"
+            android:text="慧阅"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/appname"
@@ -58,17 +58,9 @@
             android:hint="请输入你的密码"
             android:id="@+id/password" />
 
-        <CheckBox
-            android:text="记住密码"
-            android:theme="@style/MyCheckBox"
-            android:layout_gravity="right"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/remember_password" />
 
         <Button
-            android:text="登录"
+            android:text="注册"
             android:background="@drawable/allblueshape"
             android:textColor="@color/white"
             android:layout_marginTop="10dp"
@@ -76,28 +68,6 @@
             android:layout_height="45dp"
             android:id="@+id/submit" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="right"
-            android:layout_marginTop="20dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="还没有账号？点击"
-                android:textColor="@color/white"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="注册"
-                android:id="@+id/register"
-                android:textStyle="bold"
-                android:layout_marginLeft="10px"
-                android:textColor="@color/colorPrimary"/>
-
-        </LinearLayout>
 
 
     </LinearLayout>
