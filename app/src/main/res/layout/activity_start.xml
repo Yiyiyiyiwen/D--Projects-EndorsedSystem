@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/readingbg"
-    tools:context="com.example.even1.endorsedsystemstudent.View.StartReading">
+    tools:context="com.example.even1.endorsedsystemstudent.View.StackFragment.StartReading">
 
     <com.moyinzi.sakura.textviewpackage.changeablecolorfultextview.ChangeableColorfulTextView
         android:layout_width="match_parent"

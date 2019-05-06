@@ -28,7 +28,7 @@ import com.czp.searchmlist.FlowLayout;
 import com.czp.searchmlist.SearchOldDataAdapter;
 import com.czp.searchmlist.selfSearchGridView;
 import com.example.even1.endorsedsystemstudent.R;
-import com.example.even1.endorsedsystemstudent.StackFragment.Book_List;
+import com.example.even1.endorsedsystemstudent.View.StackFragment.Book_List;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -166,7 +166,7 @@ public class mSearchLayout extends LinearLayout {
     }
     private void gebook(String searchtext){
         AsyncHttpClient client = new AsyncHttpClient();
-        String url = "http://118.25.100.167/android/booksearch.action?keyword=西";
+        String url = "http://118.25.100.167/android/booksearch.action?keyword="+searchtext;
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {

@@ -160,7 +160,7 @@ public class mMessage extends Fragment {
                         Map<String,Object> map = new HashMap<>();
                         map.put("content",brief);
                         map.put("head",R.mipmap.green);
-                        map.put("title","阅读《"+bookname.get(bookid-1)+"》第"+chapterid+"回");
+                        //map.put("title","阅读《"+bookname.get(bookid-1)+"》第"+chapterid+"回");
                         map.put("time","截止时间："+endtime);
                         list.add(map);
                         Message msg = Message.obtain();

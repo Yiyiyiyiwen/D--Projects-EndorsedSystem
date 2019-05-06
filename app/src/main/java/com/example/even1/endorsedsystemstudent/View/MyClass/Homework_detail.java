@@ -1,14 +1,17 @@
 package com.example.even1.endorsedsystemstudent.View.MyClass;
 
+import android.content.Intent;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.even1.endorsedsystemstudent.R;
+import com.example.even1.endorsedsystemstudent.View.StackFragment.StartReading;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -20,7 +23,7 @@ import java.io.UnsupportedEncodingException;
 
 import cz.msebera.android.httpclient.Header;
 
-public class Homework_detail extends AppCompatActivity {
+public class Homework_detail extends AppCompatActivity implements View.OnClickListener {
 
     private TextView jianjie,request,bookname,starttime,endtime,chapterid;
     private int bookid;
@@ -30,6 +33,7 @@ public class Homework_detail extends AppCompatActivity {
     private TextView Ttitle;
     private Toolbar toolbar;
     public int IS_FINISH;
+    private Button check,start,submit;
 
     private android.os.Handler handler = new android.os.Handler() {
         public void handleMessage(Message msg) {
@@ -52,18 +56,17 @@ public class Homework_detail extends AppCompatActivity {
         starttime = (TextView)findViewById(R.id.starttime);
         endtime = (TextView)findViewById(R.id.endtime);
         chapterid = (TextView)findViewById(R.id.chapters);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+
+
+        check  = (Button)findViewById(R.id.check);
+        start = (Button)findViewById(R.id.startread);
+        submit = (Button)findViewById(R.id.submit);
         init();
     }
 
     private void init() {
         Ttitle.setText("作业详情");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
 
         Bundle bundle=getIntent().getExtras();
         bookid = bundle.getInt("bookid");
@@ -75,6 +78,10 @@ public class Homework_detail extends AppCompatActivity {
         starttime.setText(bundle.getString("ctime"));
         endtime.setText(bundle.getString("endtime"));
         chapterid.setText("第"+bundle.getInt("chapterid")+"章");
+
+        check.setOnClickListener(this);
+        start.setOnClickListener(this);
+        submit.setOnClickListener(this);
     }
 
     public void getbookcase(final int mbookid){
@@ -111,5 +118,20 @@ public class Homework_detail extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.check:
+                startActivity(new Intent(this, My_note.class));
+                break;
+            case R.id.startread:
+                startActivity(new Intent(this, StartReading.class));
+                break;
+            case R.id.submit:
+                Toast.makeText(this, "提交成功", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

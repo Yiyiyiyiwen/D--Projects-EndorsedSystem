@@ -189,7 +189,7 @@ public class BookShelf extends Fragment implements AdapterView.OnItemClickListen
                 msg.what = IS_FINISH;
                 handler.sendMessage(msg);
             }
-            if(count==mbookid.size()){
+            if(count==mbookid.size()||count==0){
                 break;
             }
         }

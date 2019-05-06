@@ -20,10 +20,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".View.MyClass.My_note"
+            android:label="@string/title_activity_my_note"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".Login.Register"
             android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".MainActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".Login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,8 +66,8 @@
             android:label="@string/title_activity_settings" />
         <activity android:name=".View.MyClass.Homework_detail" />
         <activity android:name=".View.MyClass.MyGrade" />
-        <activity android:name=".View.Reading"></activity>
-        <activity android:name=".View.StartReading"></activity>
+        <activity android:name=".View.Reading" />
+        <activity android:name=".View.StackFragment.StartReading" />
     </application>
 
 </manifest>

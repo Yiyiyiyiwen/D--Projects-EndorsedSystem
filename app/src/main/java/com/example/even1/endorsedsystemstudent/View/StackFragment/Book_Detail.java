@@ -20,7 +20,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.even1.endorsedsystemstudent.View.MyClass.Homework_detail;
 import com.example.even1.endorsedsystemstudent.R;
-import com.example.even1.endorsedsystemstudent.View.Reading;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -35,7 +34,6 @@ import java.util.List;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.message.BasicTokenIterator;
 
 public class Book_Detail extends AppCompatActivity implements View.OnClickListener{
 
@@ -52,7 +50,7 @@ public class Book_Detail extends AppCompatActivity implements View.OnClickListen
     private int rank;
     private String imgurl;
     private Homework_detail homework_detail;
-    private Button startread;
+    private Button startread,add;
 
     private android.os.Handler handler = new android.os.Handler() {
         public void handleMessage(Message msg) {
@@ -92,6 +90,7 @@ public class Book_Detail extends AppCompatActivity implements View.OnClickListen
         pic = (ImageView)findViewById(R.id.pic);
 
         startread = (Button)findViewById(R.id.startread);
+        add = (Button)findViewById(R.id.add);
         init();
     }
 
@@ -133,6 +132,7 @@ public class Book_Detail extends AppCompatActivity implements View.OnClickListen
         });
 
         startread.setOnClickListener(this);
+        add.setOnClickListener(this);
     }
 
     private void getbookinfor(final int bookid) {
@@ -235,9 +235,11 @@ public class Book_Detail extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.startread:
-                Intent intent = new Intent(this, Reading.class);
+                Intent intent = new Intent(this, StartReading.class);
                 startActivity(intent);
                 break;
+            case R.id.add:
+                Toast.makeText(this, "加入书架成功", Toast.LENGTH_SHORT).show();
         }
     }
 }
