@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -81,9 +82,20 @@ public class BookShelf extends Fragment implements AdapterView.OnItemClickListen
         keepread = (ImageView)view.findViewById(R.id.keepread);
         mbookname = (TextView)view.findViewById(R.id.bookname);
         manage = (Button)view.findViewById(R.id.manage);
-        init();
+        //init();
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mbookid.clear();
+        myList.clear();
+        mybooklist.clear();
+        init();
+        adapter = new ImageListAdapter(getContext(),mybooklist,mbookid);
+        gridview.setAdapter(adapter);
     }
 
     private void init() {
@@ -179,7 +191,8 @@ public class BookShelf extends Fragment implements AdapterView.OnItemClickListen
         System.out.println(mbookid.size());
         for(int position=0;position<myList.size();position++){
             HashMap<String,Object> map = new HashMap<>();
-            if(myList.get(position).get("id")==mbookid.get(count)){
+            int flag = mbookid.indexOf(myList.get(position).get("id"));
+            if(flag!=-1){
                 map.put("image",myList.get(position).get("image"));
                 map.put("name",myList.get(position).get("name"));
                 mybooklist.add(map);
