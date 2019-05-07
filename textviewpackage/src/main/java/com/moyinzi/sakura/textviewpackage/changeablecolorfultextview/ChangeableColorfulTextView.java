@@ -1,6 +1,7 @@
 package com.moyinzi.sakura.textviewpackage.changeablecolorfultextview;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -42,6 +43,8 @@ public class ChangeableColorfulTextView extends LinearLayout {
         addView(view);
         this.mTextView = (TextView) findViewById(R.id.cctv_content);
         this.canvas = (ContentRenderCanvas) findViewById(R.id.cctv_canvas);
+
+
     }
 
     public CCTVController build() {

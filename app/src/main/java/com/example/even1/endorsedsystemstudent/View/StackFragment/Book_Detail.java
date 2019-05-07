@@ -260,6 +260,7 @@ public class Book_Detail extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()){
             case R.id.startread:
                 Intent intent = new Intent(this, StartReading.class);
+                intent.putExtra("bookid", mbookid);
                 startActivity(intent);
                 break;
             case R.id.add:

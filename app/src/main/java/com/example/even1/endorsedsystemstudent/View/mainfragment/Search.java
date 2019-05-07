@@ -28,10 +28,10 @@ public class Search extends Fragment {
     }
 
     private void init() {
-        String shareData = "朝花夕拾,送东阳马生序,哈姆雷特,歌德谈话录,老人与海,复活";
+        String shareData = "杨家将,周易,大学,红楼梦,南北史演义,中庸";
         List<String> skills = Arrays.asList(shareData.split(","));
 
-        String shareHotData ="送东阳马生序,红楼梦,水浒传,福尔摩斯探案全集";
+        String shareHotData ="西游记,三国演义,大学,孟子";
         List<String> skillHots = Arrays.asList(shareHotData.split(","));
 
         msearchLy.initData(skills, skillHots, new mSearchLayout.setSearchCallBackListener() {

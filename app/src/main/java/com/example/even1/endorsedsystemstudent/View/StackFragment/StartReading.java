@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.graphics.Paint;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextPaint;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +23,8 @@ import android.widget.Toast;
 
 import com.example.even1.endorsedsystemstudent.R;
 import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.moyinzi.sakura.textviewpackage.changeablecolorfultextview.ChangeableColorfulTextView;
 import com.moyinzi.sakura.textviewpackage.changeablecolorfultextview.entity.CCTVContent;
 import com.moyinzi.sakura.textviewpackage.changeablecolorfultextview.handler.CCTVMenuHandler;
@@ -31,17 +35,79 @@ import com.moyinzi.sakura.textviewpackage.changeablecolorfultextview.utils.CCTVC
 import com.moyinzi.sakura.textviewpackage.changeablecolorfultextview.utils.CommonAction;
 import com.moyinzi.sakura.textviewpackage.changeablecolorfultextview.utils.CommonRender;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import cz.msebera.android.httpclient.Header;
+
 public class StartReading extends AppCompatActivity {
     private ArrayList<HashMap<String, Object>> notelist = new ArrayList<>();
     private String mynote,sentense;
+    private int bookid;
+    private TextView text;
+    private CharSequence charSequence;
+
+
+    public void gettext(){
+        AsyncHttpClient client = new AsyncHttpClient();
+        String url = "http://118.25.100.167/android/chapter.action?bookid="+bookid;
+        client.get(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                try {
+                    String resultDate = new String(bytes,"utf-8");
+                    JSONArray array = new JSONArray(resultDate);
+                    for(int j=0;j<1;j++){
+                        JSONObject js = array.getJSONObject(j);
+                        String mytext = js.getString("text");
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                            charSequence = Html.fromHtml(mytext,Html.FROM_HTML_MODE_LEGACY);
+                        } else {
+                            charSequence = Html.fromHtml(mytext);
+                        }
+                       // text.setText(charSequence);
+                        System.out.print("mytext---------------------------------------");
+                        System.out.print(charSequence);
+                        final ChangeableColorfulTextView cctv = (ChangeableColorfulTextView) findViewById(R.id.cctv);
+                        cctv.getConfigure()
+                                .setText(String.valueOf(charSequence));
+
+                        /*SharedPreferences sharedPreferences= getSharedPreferences("readtext",Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("read",String.valueOf(charSequence));
+                        editor.commit();*/
+                    }
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+                System.out.println("失败");
+            }
+        });
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        Intent intent = getIntent();
+        bookid = intent.getIntExtra("bookid",0);
+
+        LayoutInflater layout=getLayoutInflater();
+
+        gettext();
         final Map<Integer, CCTVContentRender> contentRenderMode = new HashMap<>();
         CommonRender.build(contentRenderMode, 1, new CommonRender.Callback() {
             @Override
@@ -105,7 +171,7 @@ public class StartReading extends AppCompatActivity {
                         Log.i("content", "update");
                     }
                 })
-                //.setText("ckajclswjdcolknvkijsclsdcsdvsdv\ncsdhjcvwnelkjcbujsikucnkdjc")
+                .setText(String.valueOf(charSequence))
                 .setMenu(R.layout.layout_pop_menu, new CCTVMenuHandler() {
                     public TextView mDelTv;
 

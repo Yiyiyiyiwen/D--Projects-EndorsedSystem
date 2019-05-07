@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,6 +29,7 @@ import com.czp.searchmlist.FlowLayout;
 import com.czp.searchmlist.SearchOldDataAdapter;
 import com.czp.searchmlist.selfSearchGridView;
 import com.example.even1.endorsedsystemstudent.R;
+import com.example.even1.endorsedsystemstudent.View.StackFragment.Book_Detail;
 import com.example.even1.endorsedsystemstudent.View.StackFragment.Book_List;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -51,7 +53,7 @@ import cz.msebera.android.httpclient.Header;
 public class mSearchLayout extends LinearLayout {
 
     private String msearch_hint;
-    private  int msearch_baground;
+    private  int msearch_baground,bookid;
     Context context;
     private ImageView ib_searchtext_delete;
     private EditText et_searchtext_search;
@@ -181,7 +183,7 @@ public class mSearchLayout extends LinearLayout {
                             bookname.setText("《"+js.getString("bookname")+"》");
                             writer.setText(js.getString("writer"));
                             des.setText(js.getString("brief"));
-
+                            bookid = js.getInt("id");
                             String url = "http://118.25.100.167"+js.getString("img");
                             Glide.with(getContext())
                                     .load(url)
@@ -203,7 +205,19 @@ public class mSearchLayout extends LinearLayout {
         });
     }
     private void setLinstener() {
+        result.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Book_Detail.class);
 
+                Bundle bundle = new Bundle();
+                bundle.putInt("bookid", bookid);
+                intent.putExtras(bundle);
+
+                context.startActivity(intent);
+
+            }
+        });
 
         //给删除按钮添加点击事件
         ib_searchtext_delete.setOnClickListener(new OnClickListener() {
@@ -260,7 +274,7 @@ public class mSearchLayout extends LinearLayout {
                 String string = ((TextView)v).getText().toString();
 
 //                Toast.makeText(context, "Item点击"+string, Toast.LENGTH_SHORT).show();
-
+                gebook(string);
                 executeSearch_and_NotifyDataSetChanged(string);
 
             }
