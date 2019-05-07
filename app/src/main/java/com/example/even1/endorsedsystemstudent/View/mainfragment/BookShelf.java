@@ -123,7 +123,9 @@ public class BookShelf extends Fragment implements AdapterView.OnItemClickListen
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                getbookcase();
+                if(mbookid.size()!=0){
+                    getbookcase();
+                }
             }
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {

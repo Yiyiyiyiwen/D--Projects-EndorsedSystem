@@ -1,6 +1,8 @@
 package com.example.even1.endorsedsystemstudent.View.StackFragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,10 +20,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.even1.endorsedsystemstudent.Login.Login;
+import com.example.even1.endorsedsystemstudent.MainActivity;
 import com.example.even1.endorsedsystemstudent.View.MyClass.Homework_detail;
 import com.example.even1.endorsedsystemstudent.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,6 +56,7 @@ public class Book_Detail extends AppCompatActivity implements View.OnClickListen
     private String imgurl;
     private Homework_detail homework_detail;
     private Button startread,add;
+    private int mbookid;
 
     private android.os.Handler handler = new android.os.Handler() {
         public void handleMessage(Message msg) {
@@ -103,6 +109,7 @@ public class Book_Detail extends AppCompatActivity implements View.OnClickListen
         toolbar.setTitle("书本详情");
         Bundle bundle=getIntent().getExtras();
         int bookid = bundle.getInt("bookid");
+        mbookid = bookid;
         Toast.makeText(this, "bookid----------"+bookid, Toast.LENGTH_SHORT).show();
         getchapter(bookid);
         getbookinfor(bookid);
@@ -230,7 +237,24 @@ public class Book_Detail extends AppCompatActivity implements View.OnClickListen
             }
         });
     }
+    public void addbook(){
+        SharedPreferences sp = getSharedPreferences("User", Context.MODE_PRIVATE);
+        int id = sp.getInt("id",5);
+        System.out.println("mbookid"+mbookid+"uid"+id);
+        AsyncHttpClient client = new AsyncHttpClient();
+        String url = "http://118.25.100.167/android/addshelf.action?bookid="+mbookid+"&&uid="+id;
+        client.get(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                System.out.println("1");
+            }
 
+            @Override
+            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+                System.out.println("失败");
+            }
+        });
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -240,6 +264,7 @@ public class Book_Detail extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.add:
                 Toast.makeText(this, "加入书架成功", Toast.LENGTH_SHORT).show();
+                addbook();
         }
     }
 }
