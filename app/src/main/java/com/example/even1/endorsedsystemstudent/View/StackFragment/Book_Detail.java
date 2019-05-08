@@ -40,7 +40,7 @@ import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
 
-public class Book_Detail extends AppCompatActivity implements View.OnClickListener{
+public class  Book_Detail extends AppCompatActivity implements View.OnClickListener{
 
     private TextView bookname,writer,brief,bookintro;
     private ImageView all,pic;

@@ -124,6 +124,7 @@ public class ReadingIN extends Fragment implements View.OnClickListener, Adapter
                         for(int number=0;number<typearray.length;number++){
                             if(Integer.parseInt(typearray[number])==2){{
                                 for(int count=0;count<typearray.length;count++){
+                                    //判断书籍属于小学/初中/高中
                                     if(Integer.parseInt(typearray[count])==1){
                                         HashMap<String,Object> map = new HashMap<>();
                                         map.put("id",id);
@@ -195,6 +196,7 @@ public class ReadingIN extends Fragment implements View.OnClickListener, Adapter
             }
         });
     }
+    //书单详情
 
     @Override
     public void onClick(View v) {
@@ -218,6 +220,7 @@ public class ReadingIN extends Fragment implements View.OnClickListener, Adapter
         }
 
     }
+    //书籍详情
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -166,6 +166,9 @@ public class mSearchLayout extends LinearLayout {
         }
 
     }
+
+
+    /*搜索请求*/
     private void gebook(String searchtext){
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "http://118.25.100.167/android/booksearch.action?keyword="+searchtext;

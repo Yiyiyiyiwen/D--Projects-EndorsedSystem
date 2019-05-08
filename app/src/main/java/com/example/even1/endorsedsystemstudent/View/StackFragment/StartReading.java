@@ -54,6 +54,7 @@ public class StartReading extends AppCompatActivity {
     private CharSequence charSequence;
 
 
+    /**获取书本内容*/
     public void gettext(){
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "http://118.25.100.167/android/chapter.action?bookid="+bookid;
@@ -71,6 +72,8 @@ public class StartReading extends AppCompatActivity {
                         } else {
                             charSequence = Html.fromHtml(mytext);
                         }
+
+                        charSequence = charSequence.subSequence(0,1000);
                        // text.setText(charSequence);
                         System.out.print("mytext---------------------------------------");
                         System.out.print(charSequence);
@@ -257,6 +260,8 @@ public class StartReading extends AppCompatActivity {
                                                 SharedPreferences sp = getSharedPreferences("SP_TEST", Context.MODE_PRIVATE);
                                                 Gson list = new Gson();
                                                 String notes = list.toJson(notelist);
+
+                                                //把批注保存到本地
                                                 SharedPreferences.Editor editor = sp.edit();
                                                 editor.putString("notes",notes);
                                                 editor.commit();
@@ -312,6 +317,8 @@ public class StartReading extends AppCompatActivity {
                         CommonAction.build(controller, view, R.id.black_color5, 5, Color.GRAY, "");
                     }
                 });
+
+        //获取选择的文本
         cctv.build().setSelectListener(new OnSelectListener() {
             @Override
             public void onTextSelected(CharSequence content) {

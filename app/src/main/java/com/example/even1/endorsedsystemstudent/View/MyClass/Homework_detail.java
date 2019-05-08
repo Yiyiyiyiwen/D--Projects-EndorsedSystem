@@ -127,7 +127,9 @@ public class Homework_detail extends AppCompatActivity implements View.OnClickLi
                 startActivity(new Intent(this, My_note.class));
                 break;
             case R.id.startread:
-                startActivity(new Intent(this, StartReading.class));
+                Intent intent = new Intent(this, StartReading.class);
+                intent.putExtra("bookid", bookid);
+                startActivity(intent);
                 break;
             case R.id.submit:
                 Toast.makeText(this, "提交成功", Toast.LENGTH_SHORT).show();

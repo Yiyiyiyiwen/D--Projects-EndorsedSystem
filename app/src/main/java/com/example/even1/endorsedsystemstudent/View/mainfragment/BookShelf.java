@@ -273,34 +273,7 @@ public class BookShelf extends Fragment implements AdapterView.OnItemClickListen
                 } else {
                     isShowDelete = true;
                     adapter.setIsShowDelete(isShowDelete);
-                    /*gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view,
-                                                final int position, long id) {
-                            final AlertDialog.Builder builer = new AlertDialog.Builder(getActivity());
-                            builer.setTitle("删除");
-                            builer.setMessage("确认要删除该本书吗？");
-                            builer.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                            builer.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //delete(position);//删除选中项
-                                    adapter = new ImageListAdapter(getActivity(), mybooklist);//重新绑定一次adapter
-                                    gridview.setAdapter(adapter);
-                                    adapter.notifyDataSetChanged();//刷新gridview
-                                }
-                            });
-                            AlertDialog dialog = builer.create();
-                            dialog.show();
-                        }
-
-                    });*/
                 }
                 adapter.setIsShowDelete(isShowDelete);//setIsShowDelete()方法用于传递isShowDelete值
                 break;
